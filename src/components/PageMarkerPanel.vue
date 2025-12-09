@@ -16,6 +16,7 @@ const emit = defineEmits<Emits>()
 
 const activeTab = ref('basic')
 
+// @ts-ignore
 function onEnabledChange(enabled: boolean) {
   emit('change', { enabled })
 }
@@ -74,18 +75,6 @@ function getModeLabel(mode: string) {
     <div class="panel-content">
       <!-- 基础设置 -->
       <div v-show="activeTab === 'basic'" class="tab-content">
-        <!-- 开关 -->
-        <div class="control-group">
-          <label class="switch-label">
-            <input
-              type="checkbox" :checked="config.enabled"
-              @change="onEnabledChange(($event.target as HTMLInputElement).checked)"
-            >
-            <span class="switch-slider" />
-            <span class="switch-text">启用页面遮罩</span>
-          </label>
-        </div>
-
         <!-- 显示按钮开关 -->
         <div class="control-group">
           <label class="switch-label">

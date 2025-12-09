@@ -7,9 +7,11 @@ export default antfu({
 
   typescript: true,
 }, {
-  files: ['**/*.vue'],
+  files: ['**/*'],
   rules: {
-    'no-console': 'warn',
+    'no-console': 'off',
     'vue/multi-word-component-names': 'off',
+    'unused-imports/no-unused-vars': 'off',
+    'ts/ban-ts-comment': 'off',
   },
 })

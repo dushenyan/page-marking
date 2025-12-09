@@ -46,6 +46,7 @@ function onConfigChange(updates: Partial<MarkerConfig>) {
   }
 }
 
+// @ts-ignore
 function showNotification(message: string) {
   const notification = document.createElement('div')
   notification.className = 'page-marker-notification'
