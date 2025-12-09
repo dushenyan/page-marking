@@ -32,6 +32,10 @@ function onMaskOpacityChange(opacity: number) {
   emit('change', { maskOpacity: opacity })
 }
 
+function onShowButtonChange(showButton: boolean) {
+  emit('change', { showButton })
+}
+
 function getModeLabel(mode: string) {
   switch (mode) {
     case 'blur': return '模糊'
@@ -79,6 +83,18 @@ function getModeLabel(mode: string) {
             >
             <span class="switch-slider" />
             <span class="switch-text">启用页面遮罩</span>
+          </label>
+        </div>
+
+        <!-- 显示按钮开关 -->
+        <div class="control-group">
+          <label class="switch-label">
+            <input
+              type="checkbox" :checked="config.showButton"
+              @change="onShowButtonChange(($event.target as HTMLInputElement).checked)"
+            >
+            <span class="switch-slider" />
+            <span class="switch-text">显示控制按钮</span>
           </label>
         </div>
 

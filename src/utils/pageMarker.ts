@@ -4,6 +4,8 @@ export interface MarkerConfig {
   maskOpacity: number
   mode: 'blur' | 'mask' | 'both'
   excludeSelectors: string[]
+  showButton: boolean
+  buttonPosition: { x: number; y: number }
 }
 
 // GM函数兼容性实现
@@ -41,7 +43,9 @@ export class PageMarker {
       blurAmount: GM_getValue_compat('marker_blur_amount', 8),
       maskOpacity: GM_getValue_compat('marker_mask_opacity', 0.9),
       mode: GM_getValue_compat('marker_mode', 'both') as 'blur' | 'mask' | 'both',
-      excludeSelectors: [], // 现在不需要排除选择器，因为使用独立的遮罩层
+      excludeSelectors: [],
+      showButton: GM_getValue_compat('marker_show_button', true),
+      buttonPosition: GM_getValue_compat('marker_button_position', { x: window.innerWidth - 70, y: window.innerHeight / 2 - 25 })
     }
   }
 
@@ -51,6 +55,8 @@ export class PageMarker {
     GM_setValue_compat('marker_mask_opacity', this.config.maskOpacity)
     GM_setValue_compat('marker_mode', this.config.mode)
     GM_setValue_compat('marker_exclude_selectors', this.config.excludeSelectors)
+    GM_setValue_compat('marker_show_button', this.config.showButton)
+    GM_setValue_compat('marker_button_position', this.config.buttonPosition)
   }
 
   getConfig(): MarkerConfig {

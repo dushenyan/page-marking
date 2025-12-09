@@ -17,7 +17,10 @@ export default defineConfig({
         author: 'dushenyan88@gmail.com',
         icon: 'https://vitejs.dev/logo.svg',
         match: ['*://*/*'],
-        grant: ['GM_addStyle', 'GM_getValue', 'GM_setValue', 'GM_registerMenuCommand'],
+        grant: ['GM_addStyle', 'GM_getValue', 'GM_setValue', 'GM_registerMenuCommand', 'GM_getResourceText', 'GM_openInTab', 'GM_notification'],
+        'run-at': 'document-end',
+        'noframes': false,
+        'inject-into': 'page'
       },
       build: {
         externalGlobals: {
