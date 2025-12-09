@@ -1,0 +1,26 @@
+{
+  "name": "page-marking",
+  "type": "module",
+  "version": "0.1.0",
+  "description": "智能页面遮罩工具，支持多种遮罩模式，保护隐私",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc -b && vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "lint:ui": "npx @eslint/config-inspector"
+  },
+  "dependencies": {
+    "vue": "^3.5.25"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^3.16.0",
+    "@vitejs/plugin-vue": "^6.0.2",
+    "eslint": "^9.39.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.7",
+    "vite-plugin-monkey": "^7.1.5",
+    "vue-tsc": "^3.1.8"
+  }
+}
