@@ -5,7 +5,7 @@ export interface MarkerConfig {
   mode: 'blur' | 'mask' | 'both'
   excludeSelectors: string[]
   showButton: boolean
-  buttonPosition: { x: number; y: number }
+  buttonPosition: { x: number, y: number }
 }
 
 // GM函数兼容性实现
@@ -45,7 +45,7 @@ export class PageMarker {
       mode: GM_getValue_compat('marker_mode', 'both') as 'blur' | 'mask' | 'both',
       excludeSelectors: [],
       showButton: GM_getValue_compat('marker_show_button', true),
-      buttonPosition: GM_getValue_compat('marker_button_position', { x: window.innerWidth - 70, y: window.innerHeight / 2 - 25 })
+      buttonPosition: GM_getValue_compat('marker_button_position', { x: window.innerWidth - 70, y: window.innerHeight / 2 - 25 }),
     }
   }
 

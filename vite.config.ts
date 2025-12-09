@@ -10,17 +10,17 @@ export default defineConfig({
     monkey({
       entry: 'src/main.ts',
       userscript: {
-        name: '页面标记遮罩',
-        namespace: 'page-marking',
+        'name': '页面标记遮罩',
+        'namespace': 'page-marking',
         description,
         version,
-        author: 'dushenyan88@gmail.com',
-        icon: 'https://vitejs.dev/logo.svg',
-        match: ['*://*/*'],
-        grant: ['GM_addStyle', 'GM_getValue', 'GM_setValue', 'GM_registerMenuCommand', 'GM_getResourceText', 'GM_openInTab', 'GM_notification'],
+        'author': 'dushenyan88@gmail.com',
+        'icon': 'https://vitejs.dev/logo.svg',
+        'match': ['*://*/*'],
+        'grant': ['GM_addStyle', 'GM_getValue', 'GM_setValue', 'GM_registerMenuCommand', 'GM_getResourceText', 'GM_openInTab', 'GM_notification'],
         'run-at': 'document-end',
         'noframes': false,
-        'inject-into': 'page'
+        'inject-into': 'page',
       },
       build: {
         externalGlobals: {

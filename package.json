@@ -12,6 +12,7 @@
     "lint:ui": "npx @eslint/config-inspector"
   },
   "dependencies": {
+    "unrs-resolver": "1.11.1",
     "vue": "^3.5.25"
   },
   "devDependencies": {
