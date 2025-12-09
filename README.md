@@ -47,25 +47,6 @@ src/
 └── style.css        # 全局样式
 ```
 
-## 配置说明
-
-### 修改插件信息
-
-在 `vite.config.ts` 中修改以下信息：
-
-- `name`: 插件名称
-- `namespace`: 插件命名空间
-- `description`: 插件描述
-- `author`: 作者
-- `match`: 目标网站URL
-- `grant`: 需要的API权限
-
-### 修改项目信息
-
-在 `package.json` 中修改：
-
-- `name`: 包名
-- `description`: 包描述
 
 ## 推荐的 IDE 设置
 

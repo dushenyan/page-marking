@@ -1,7 +1,7 @@
 {
   "name": "page-marking",
   "type": "module",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "智能页面遮罩工具，支持多种遮罩模式，保护隐私",
   "scripts": {
     "dev": "vite",
