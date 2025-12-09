@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { MarkerConfig } from '../utils/pageMarker'
 import { ref } from 'vue'
+import type { MarkerConfig } from '../utils/pageMarker'
 
 interface Props {
   config: MarkerConfig
@@ -300,6 +300,7 @@ function getModeLabel(mode: string) {
         cursor: pointer;
         font-size: 13px;
         transition: all 0.2s;
+        color: #333;
     }
 
     .mode-buttons button.active {

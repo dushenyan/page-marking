@@ -14,12 +14,6 @@ const toggleClass = computed(() => ({
   'disabled': !config.value.enabled,
 }))
 
-const showToggleClass = computed(() => ({
-  'panel-container': true,
-  'visible': isPanelVisible.value,
-  'hidden': !isPanelVisible.value,
-}))
-
 onMounted(() => {
   updateConfig()
   setupKeyboardShortcuts()
@@ -31,15 +25,8 @@ function updateConfig() {
 }
 
 function toggleMarker() {
-  const newState = pageMarker.toggle()
+  pageMarker.toggle()
   updateConfig()
-
-  if (newState) {
-    showNotification('页面遮罩已开启')
-  }
-  else {
-    showNotification('页面遮罩已关闭')
-  }
 }
 
 function togglePanel() {
@@ -49,6 +36,14 @@ function togglePanel() {
 function onConfigChange(updates: Partial<MarkerConfig>) {
   pageMarker.updateConfig(updates)
   updateConfig()
+
+  // 如果更新了按钮显示状态，立即应用到DOM
+  if ('showButton' in updates) {
+    const controlElement = document.querySelector('.page-marker-control') as HTMLElement
+    if (controlElement) {
+      controlElement.style.display = updates.showButton ? 'block' : 'none'
+    }
+  }
 }
 
 function showNotification(message: string) {
@@ -192,18 +187,17 @@ function setupDragAndDrop() {
 </script>
 
 <template>
+  <!-- 浮动切换按钮 -->
   <div
+    v-if="config.showButton"
     class="page-marker-control"
     :style="{
-      display: config.showButton ? 'block' : 'none',
-      left: config.showButton ? `${buttonPosition.x}px` : 'auto',
-      top: config.showButton ? `${buttonPosition.y}px` : 'auto',
+      left: `${buttonPosition.x}px`,
+      top: `${buttonPosition.y}px`,
       right: 'auto',
     }"
   >
-    <!-- 浮动切换按钮 -->
     <button
-      v-if="config.showButton"
       :class="toggleClass"
       title="单击切换遮罩，双击打开控制面板 (F8/F9)"
       style="position: relative;"
@@ -219,11 +213,22 @@ function setupDragAndDrop() {
         <path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" />
       </svg>
     </button>
+  </div>
 
-    <!-- 控制面板 -->
-    <div :class="showToggleClass">
-      <PageMarkerPanel :config="config" @change="onConfigChange" @close="isPanelVisible = false" />
-    </div>
+  <!-- 控制面板 - 独立于按钮，确保可以通过F9打开 -->
+  <div
+    v-show="isPanelVisible"
+    class="panel-container"
+    :style="{
+      position: 'fixed',
+      top: '60px',
+      right: '20px',
+      width: '320px',
+      maxWidth: '90vw',
+      zIndex: 2147483647,
+    }"
+  >
+    <PageMarkerPanel :config="config" @change="onConfigChange" @close="isPanelVisible = false" />
   </div>
 </template>
 
@@ -265,28 +270,12 @@ function setupDragAndDrop() {
   }
 
   .panel-container {
-    position: absolute;
-    top: 60px;
-    right: 0;
-    width: 320px;
-    max-height: 480px;
     background: white;
     border-radius: 12px;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: all 0.3s ease;
     transform-origin: top right;
-  }
-
-  .panel-container.hidden {
-    opacity: 0;
-    transform: scale(0.9);
-    pointer-events: none;
-  }
-
-  .panel-container.visible {
-    opacity: 1;
-    transform: scale(1);
   }
 
   .page-marker-notification {

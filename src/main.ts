@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import './style.css'
 import { PageMarker } from './utils/pageMarker'
+import './style.css'
 
 // 创建根应用容器
 const appElement = document.createElement('div')
@@ -75,10 +75,8 @@ if (typeof GM_registerMenuCommand !== 'undefined') {
   GM_registerMenuCommand('⚙️ 打开控制面板', () => {
     const panel = document.querySelector('.panel-container') as HTMLElement
     if (panel) {
-      panel.classList.remove('hidden')
-      panel.classList.add('visible')
-    }
-    else {
+      panel.style.display = 'block'
+    } else {
       createNotification('控制面板未找到，请刷新页面重试')
     }
   })

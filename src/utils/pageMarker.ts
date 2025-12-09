@@ -66,8 +66,11 @@ export class PageMarker {
   updateConfig(updates: Partial<MarkerConfig>): void {
     this.config = { ...this.config, ...updates }
     this.saveConfig()
-    if (this.config.enabled) {
-      this.applyMarker()
+    // 只有在启用状态改变或模式改变时才重新应用遮罩
+    if ('enabled' in updates || 'mode' in updates || 'blurAmount' in updates || 'maskOpacity' in updates) {
+      if (this.config.enabled) {
+        this.applyMarker()
+      }
     }
   }
 
