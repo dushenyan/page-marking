@@ -1,7 +1,8 @@
 <script setup lang="ts">
+import type { MarkerConfig } from './utils/pageMarker'
 import { computed, onMounted, ref } from 'vue'
 import PageMarkerPanel from './components/PageMarkerPanel.vue'
-import { type MarkerConfig, PageMarker } from './utils/pageMarker'
+import { PageMarker } from './utils/pageMarker'
 
 const pageMarker = PageMarker.getInstance()
 const isPanelVisible = ref(false)

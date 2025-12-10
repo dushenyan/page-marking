@@ -76,7 +76,8 @@ if (typeof GM_registerMenuCommand !== 'undefined') {
     const panel = document.querySelector('.panel-container') as HTMLElement
     if (panel) {
       panel.style.display = 'block'
-    } else {
+    }
+    else {
       createNotification('控制面板未找到，请刷新页面重试')
     }
   })
