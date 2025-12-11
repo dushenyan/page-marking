@@ -6,7 +6,6 @@
   "description": "油猴插件: 智能页面遮罩工具，支持多种遮罩模式，保护隐私",
   "author": "dushenyan<dushenyan88@gmail.com>",
   "repository": "https://github.com/dushenyan/page-marking",
-  "icon": "https://cdn.jsdelivr.net/npm/simple-icons@v10/icons/privacy.svg",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
